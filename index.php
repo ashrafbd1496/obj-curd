@@ -1,3 +1,26 @@
+<?php require_once "vendor/autoload.php" ; ?>
+
+<?php 
+
+
+/**
+ * Class use 
+ */
+	use App\Controller\Student;
+
+
+	/**
+	 * Class instance
+	 */
+
+	$student = new Student;
+
+
+
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +35,26 @@
 	
 	<?php 
 
-		if (isset('signup')) {
+		if (isset($_POST['signup'])) {
 			
-			$name = $_POST['name'];
+				//get value
+			echo $name = $_POST['name'];
+			echo $email = $_POST['email'];
+			echo $cell = $_POST['cell'];
+
+
+			//File manage
+			$img = $FILES['photo'];
+
+			if (empty($name) || empty($email) || empty($cell)) {
+
+				$mess = '<p class = "alert alert-success mt-5 w-50 mx-auto ">Student Added Successfully ! <button data-dismiss = "alert" class = "close">&times;</button> </p>';
+
+			}elseif (filter_var($email, FILTER_VALIDATE_EMAIL )) {
+
+				$mess = '<p class = "alert alert-success mt-5 w-50 mx-auto ">Invalid Email ! <button data-dismiss = "alert" class = "close">&times;</button> </p>';
+			}
+
 		}
 
 	 ?>
@@ -38,6 +78,10 @@
 					<div class="form-group">
 						<label for="">Cell</label>
 						<input name="cell" class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label for="">Photo</label>
+						<input name="photo" class="form-control" type="file">
 					</div>
 					
 					<div class="form-group">
