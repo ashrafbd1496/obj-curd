@@ -38,21 +38,25 @@
 		if (isset($_POST['signup'])) {
 			
 				//get value
-			echo $name = $_POST['name'];
-			echo $email = $_POST['email'];
-			echo $cell = $_POST['cell'];
+			$name = $_POST['name'];
+			$email = $_POST['email'];
+			$cell = $_POST['cell'];
 
 
 			//File manage
-			$img = $FILES['photo'];
+			$img = $_FILES['photo'];
 
 			if (empty($name) || empty($email) || empty($cell)) {
 
-				$mess = '<p class = "alert alert-success mt-5 w-50 mx-auto ">Student Added Successfully ! <button data-dismiss = "alert" class = "close">&times;</button> </p>';
+				$mess = '<p class = "alert alert-danger mt-5 w-50 mx-auto ">All fields are required ! <button data-dismiss = "alert" class = "close">&times;</button> </p>';
 
-			}elseif (filter_var($email, FILTER_VALIDATE_EMAIL )) {
+			}elseif (filter_var($email, FILTER_VALIDATE_EMAIL ) == false) {
 
-				$mess = '<p class = "alert alert-success mt-5 w-50 mx-auto ">Invalid Email ! <button data-dismiss = "alert" class = "close">&times;</button> </p>';
+				$mess = '<p class = "alert alert-warning mt-5 w-50 mx-auto ">Invalid Email ! <button data-dismiss = "alert" class = "close">&times;</button> </p>';
+			}else{
+
+				$mess = $student ->addNewStudent($name, $email, $cell, $img);
+
 			}
 
 		}
@@ -64,6 +68,11 @@
 		<div class="card shadow">
 			<div class="card-body">
 				<h2>Sign Up</h2>
+				<?php 
+					if (isset($mess)) {
+						echo $mess;
+					}
+				 ?>
 
 				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST" enctype = "multipart/form-data" >
 
