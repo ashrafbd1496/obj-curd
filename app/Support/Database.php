@@ -114,6 +114,25 @@
 			}
 		}
 
+		public function delete($table, $id)
+		{
+
+			//Data DELETE
+
+			$sql = "DELETE FROM $table WHERE id = '$id' ";
+
+			$data = $this ->connection () ->query($sql);
+
+			if ($data) {
+				return true;
+			}
+		} 
+
+
+
+
+
+
 		}
 
 

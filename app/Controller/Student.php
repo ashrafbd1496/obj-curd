@@ -50,6 +50,21 @@
 				return $data;
 			}
 		}
+
+		/**
+		 * Delete single student
+		 */
+		public function deleteStudent($id)
+		{
+			$data = $this -> delete('students', $id);
+			if ($data) {
+				return '<p class = "alert alert-warning mt-5 w-50 mx-auto ">Data deleted  ! <button data-dismiss = "alert" class = "close">&times;</button> </p>';
+			}
+		}
+
+
+
+
 		
 	}
 

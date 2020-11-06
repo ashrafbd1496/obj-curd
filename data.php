@@ -16,6 +16,13 @@
 
 	$student = new Student;
 
+	//Data Delete
+	if (isset($_GET['delete'])) {
+		$id = $_GET['delete'];
+
+		$mess = $student ->deleteStudent($id);
+	}
+
 
 
 
@@ -36,6 +43,11 @@
 	
 
 	<div class="wrap-table shadow">
+		
+		<?php if (isset($mess)) {
+			echo $mess;
+		} ?>
+
 		<a class="btn btn-primary btn-sm" href="index.php">Add Student</a>
 		<div class="card">
 			<div class="card-body">
@@ -71,7 +83,7 @@
 							<td>
 								<a class="btn btn-sm btn-info" href="#">View</a>
 								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
+								<a class="btn btn-sm btn-danger" href="?delete=<?php echo $student['id']; ?>">Delete</a>
 							</td>
 						</tr>
 
