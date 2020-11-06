@@ -42,6 +42,14 @@
 				return $mess = '<p class = "alert alert-success mt-5 w-50 mx-auto ">Student added successfull<button data-dismiss = "alert" class = "close">&times;</button> </p>';
 			}
 		}
+
+		public function allStudent()
+		{
+			$data = $this -> all('students','DESC');
+			if ($data) {
+				return $data;
+			}
+		}
 		
 	}
 

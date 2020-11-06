@@ -31,7 +31,7 @@
 		 * Database conncetion setup
 		 */
 
-		public function connection ()
+		protected function connection ()
 		{
 			return $this -> connection = new mysqli($this ->host,$this ->user,$this ->pass,$this ->db);
 
@@ -41,7 +41,7 @@
 		 * File upload method
 		 */
 
-		public function fileUpload($file, $location='',array $file_type = ['jpg','png','jpeg','gif','webp'])
+		protected function fileUpload($file, $location='',array $file_type = ['jpg','png','jpeg','gif','webp'])
 		{
 			//file info
 			$file_name = $file['name'];
@@ -100,12 +100,25 @@
 		}
 
 
+		//Get all value
+		protected function all($table, $order_by)
+		{
+			//Data get from database
+
+			$sql = "SELECT * FROM $table ORDER BY id $order_by ";
+
+			$data = $this ->connection () ->query($sql);
+
+			if ($data) {
+				return $data;
+			}
+		}
+
+		}
 
 
 
 
-
-
-	}
+	
 
 
