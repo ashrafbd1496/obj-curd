@@ -36,6 +36,36 @@
 			return $this -> connection = new mysqli($this ->host,$this ->user,$this ->pass,$this ->db);
 
 		}
+
+		/**
+		 * File upload method
+		 */
+
+		public function fileUpload($file, $location='',array $file_type = ['jpg','png','jpeg','gif','webp'])
+		{
+			//file info
+			$file_name = $file['name'];
+			$file_tmp = $file['tmp_name'];
+			$file_size = $file['size'];
+
+			//file extension
+			$file_array = explode('.', $file_name);
+			$file_extension = strtolower(end($file_array));
+
+			//Unique file name
+			$unique_file_name = md5(time().rand()) .'.'.$file_extension; 
+
+			//File Upload
+			move_uploaded_file($file_tmp, $location . $unique_file_name );
+
+			return $unique_file_name;
+
+
+		}
+
+		/**
+		 * Data insert into table
+		 */
 		
 		protected function insert($table, array $data)
 		{

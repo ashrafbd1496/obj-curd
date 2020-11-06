@@ -21,13 +21,20 @@
 		 */
 		public function addNewStudent($name, $email, $cell, $img)
 		{
+			
+			//Photo upload
+
+			$this ->fileUpload($img,'media/img/Students/');
+
+
 			// parent :: insert();
 
 			$data = $this ->insert('students', [
 
 				'name' =>$name, 
 				'email' =>$email,
-				'cell' =>$cell
+				'cell' =>$cell,
+				'photo' =>$this ->fileUpload($img,'media/img/Students/')
 
 			]);
 
