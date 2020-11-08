@@ -114,7 +114,7 @@
 			}
 		}
 
-		public function delete($table, $id)
+		protected function delete($table, $id)
 		{
 
 			//Data DELETE
@@ -128,7 +128,22 @@
 			}
 		} 
 
+		/**
+		 * Single data show
+		 */
+		protected function find($table, $id)
+		{
+		
+			//Data SHOW
 
+			$sql = "SELECT * FROM $table WHERE id = '$id' ";
+
+			$data = $this ->connection () ->query($sql);
+
+			if ($data) {
+				return $data;
+			}
+		}
 
 
 

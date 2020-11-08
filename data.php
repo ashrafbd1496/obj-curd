@@ -68,7 +68,7 @@
 
 						<?php 
 
-							$data = $student ->allStudent('DESC');
+							$data = $student ->allStudent();
 							$i = 1;
 							while($student = $data ->fetch_assoc()):
 						 ?>
@@ -79,9 +79,9 @@
 							<td><?php echo $student['name']; ?></td>
 							<td><?php echo $student['email']; ?></td>
 							<td><?php echo $student['cell']; ?></td>
-							<td><?php echo $student['photo']; ?></td>
+							<td><img src="media/img/Students/<?php echo $student['photo']; ?>" alt=""></td>
 							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
+								<a class="btn btn-sm btn-info" href="show.php?id=<?php echo $student['id']; ?>">View</a>
 								<a class="btn btn-sm btn-warning" href="#">Edit</a>
 								<a class="btn btn-sm btn-danger" href="?delete=<?php echo $student['id']; ?>">Delete</a>
 							</td>
